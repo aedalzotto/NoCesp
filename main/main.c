@@ -1,9 +1,14 @@
 #include <freertos/FreeRTOS.h>
 #include <freertos/task.h>
 
-static const char* TAG = "MAIN";
+#include <router.h>
+#include <comm.h>
 
 void app_main()
 {
-    //xTaskCreate(Button::task, "Button_task", 2048, nullptr, 11, nullptr);   // Updates the Button status.
+    static QueueHandle_t queue_routes = xQueueCreate(128, sizeof(node_t));
+
+    xTaskCreate(comm_task, "Communication_task", 2048, queue_routes, 10, NULL);
+    // Communication should put requests in a queue to routing
+    xTaskCreate(router_task, "Router_task", 2048, queue_routes, 10, NULL);
 }

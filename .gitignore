@@ -1,0 +1,12 @@
+# Compiled files
+build
+
+# Visual Studio Code files
+.vscode
+
+# Backup sdkconfig
+sdkconfig.old
+
+# Eagle CAD temp schem files
+*.b#*
+*.s#*
