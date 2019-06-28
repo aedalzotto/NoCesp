@@ -55,6 +55,9 @@ static void route(uint8_t xsrc, uint8_t ysrc, uint8_t xdst, uint8_t ydst)
 		vTaskDelay(1000 / portTICK_PERIOD_MS);
 		gpio_set_level(LEDS[xidx][yidx], 0);
 		vTaskDelay(500 / portTICK_PERIOD_MS);
+		
+		// TODO: if ring only route to right
+		// Maybe do it by identifying Y as 0?
 		xidx = xidx < xdst ? xidx+1 : xidx -1;
 	}
 	while(yidx != ydst){
